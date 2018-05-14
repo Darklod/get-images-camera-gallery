@@ -1,8 +1,10 @@
 package com.darklod.getimage;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -18,6 +20,13 @@ public class Main2Activity extends AppCompatActivity {
         Uri uri = (Uri) getIntent().getExtras().get("uri");
 
         Picasso.get().load(uri).resize(100, 100).into(immg);
+    }
+
+    public void Load(View view) {
+        Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
+        Uri uri = (Uri) getIntent().getExtras().get("uri");
+        intent.putExtra("uri", uri);
+        startActivity(intent);
     }
 
     @Override

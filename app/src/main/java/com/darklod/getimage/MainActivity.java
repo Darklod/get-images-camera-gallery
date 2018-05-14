@@ -77,16 +77,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (items[which].equals("Camera")) {
-
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, REQUEST_CAMERA);
-
                 } else if (items[which].equals("Gallery")) {
-
                     Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
                     startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
-
                 } else {
                     dialog.dismiss();
                 }
@@ -101,16 +97,8 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
-            if (requestCode == REQUEST_CAMERA) {
+            if (requestCode == REQUEST_CAMERA || requestCode == SELECT_FILE) {
                 Uri uri = data.getData();
-
-                Intent intent = new Intent(this, Main2Activity.class);
-                intent.putExtra("uri", uri);
-                startActivity(intent);
-
-            } else if (requestCode == SELECT_FILE) {
-                Uri uri = data.getData();
-
                 Intent intent = new Intent(this, Main2Activity.class);
                 intent.putExtra("uri", uri);
                 startActivity(intent);
